@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Chrome and Safari optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#8B5CF6">
+    
+    <!-- Preload critical fonts for better performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500;600;700&display=swap"></noscript>
+    
+    <!-- DNS prefetch for better loading -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Critical CSS optimization -->
+    <style>
+      /* Critical above-the-fold styles */
+      body {
+        font-family: 'Source Sans Pro', system-ui, -apple-system, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      .loading-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(139, 92, 246, 0.3);
+        border-radius: 50%;
+        border-top-color: #8B5CF6;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+    
+    <title>UST Agent Portal - Enterprise AI Management</title>
+    <meta name="description" content="Professional AI agent management platform for enterprise environments with advanced role-based access control and team-specific deployment capabilities.">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Loading fallback for better UX -->
+      <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #fafaf9;">
+        <div style="text-align: center;">
+          <div class="loading-spinner" style="margin: 0 auto 16px;"></div>
+          <p style="color: #6b7280; font-size: 14px;">Loading UST Agent Portal...</p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

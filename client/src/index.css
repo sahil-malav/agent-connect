@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Sans+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Browser-specific optimizations for Chrome and Safari */
+@supports (-webkit-backdrop-filter: blur(10px)) {
+  .backdrop-blur {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Chrome and Safari specific optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  .hardware-accelerated {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Optimize rendering for Chrome/Safari */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+:root {
+  --background: hsl(250, 20%, 98%);
+  --foreground: hsl(210, 25%, 7.8431%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(210, 25%, 7.8431%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(210, 25%, 7.8431%);
+  --primary: hsl(238, 64%, 56%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(186, 73%, 40%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(240, 1.9608%, 90%);
+  --muted-foreground: hsl(210, 25%, 7.8431%);
+  --accent: hsl(211.5789, 51.3514%, 92.7451%);
+  --accent-foreground: hsl(203.8863, 88.2845%, 53.1373%);
+  --destructive: hsl(356.3033, 90.5579%, 54.3137%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(201.4286, 30.4348%, 90.9804%);
+  --input: hsl(200, 23.0769%, 97.4510%);
+  --ring: hsl(202.8169, 89.1213%, 53.1373%);
+  --chart-1: hsl(203.8863, 88.2845%, 53.1373%);
+  --chart-2: hsl(159.7826, 100%, 36.0784%);
+  --chart-3: hsl(42.0290, 92.8251%, 56.2745%);
+  --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
+  --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
+  --sidebar: hsl(0, 0%, 100%);
+  --sidebar-foreground: hsl(210, 25%, 7.8431%);
+  --sidebar-primary: hsl(203.8863, 88.2845%, 53.1373%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(211.5789, 51.3514%, 92.7451%);
+  --sidebar-accent-foreground: hsl(203.8863, 88.2845%, 53.1373%);
+  --sidebar-border: hsl(205.0000, 25.0000%, 90.5882%);
+  --sidebar-ring: hsl(202.8169, 89.1213%, 53.1373%);
+  --font-sans: 'Source Sans Pro', 'Inter', system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
+  --radius: 0.75rem;
+  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
+  --shadow-xs: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
+  --shadow-sm: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 1px 2px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
+  --shadow: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 1px 2px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
+  --shadow-md: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 2px 4px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
+  --shadow-lg: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 4px 6px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
+  --shadow-xl: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 8px 10px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
+  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+  
+  /* UST Corporate Brand Colors */
+  --ust-primary-50: hsl(238, 70%, 96%);
+  --ust-primary-100: hsl(238, 70%, 90%);
+  --ust-primary-500: hsl(238, 64%, 56%);
+  --ust-primary-600: hsl(238, 64%, 48%);
+  --ust-primary-700: hsl(238, 64%, 40%);
+  --ust-primary-800: hsl(238, 64%, 32%);
+  
+  --ust-secondary-50: hsl(186, 73%, 95%);
+  --ust-secondary-100: hsl(186, 73%, 85%);
+  --ust-secondary-500: hsl(186, 73%, 40%);
+  --ust-secondary-600: hsl(186, 73%, 35%);
+  --ust-secondary-700: hsl(186, 73%, 30%);
+  
+  --ust-accent-500: hsl(186, 73%, 40%);
+  --ust-accent-600: hsl(186, 73%, 35%);
+  
+  --ust-success-50: hsl(120, 50%, 95%);
+  --ust-success-100: hsl(120, 50%, 85%);
+  --ust-success-500: hsl(122, 39%, 49%);
+  --ust-success-600: hsl(122, 39%, 44%);
+  
+  --ust-warning-500: hsl(35, 100%, 50%);
+  --ust-warning-600: hsl(35, 91%, 47%);
+  
+  --ust-neutral-50: hsl(218, 23%, 98%);
+  --ust-neutral-100: hsl(218, 23%, 95%);
+  --ust-neutral-200: hsl(218, 23%, 90%);
+  --ust-neutral-300: hsl(218, 23%, 80%);
+  --ust-neutral-400: hsl(218, 12%, 60%);
+  --ust-neutral-500: hsl(218, 12%, 45%);
+  --ust-neutral-600: hsl(218, 12%, 35%);
+  --ust-neutral-700: hsl(218, 23%, 25%);
+  --ust-neutral-800: hsl(218, 23%, 15%);
+  --ust-neutral-900: hsl(218, 23%, 8%);
+  
+  --surface: hsl(0, 0%, 100%);
+  --surface-background: hsl(218, 23%, 98%);
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(200, 6.6667%, 91.1765%);
+  --card: hsl(228, 9.8039%, 10%);
+  --card-foreground: hsl(0, 0%, 85.0980%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(200, 6.6667%, 91.1765%);
+  --primary: hsl(203.7736, 87.6033%, 52.5490%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(195.0000, 15.3846%, 94.9020%);
+  --secondary-foreground: hsl(210, 25%, 7.8431%);
+  --muted: hsl(0, 0%, 9.4118%);
+  --muted-foreground: hsl(210, 3.3898%, 46.2745%);
+  --accent: hsl(205.7143, 70%, 7.8431%);
+  --accent-foreground: hsl(203.7736, 87.6033%, 52.5490%);
+  --destructive: hsl(356.3033, 90.5579%, 54.3137%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(210, 5.2632%, 14.9020%);
+  --input: hsl(207.6923, 27.6596%, 18.4314%);
+  --ring: hsl(202.8169, 89.1213%, 53.1373%);
+  --chart-1: hsl(203.8863, 88.2845%, 53.1373%);
+  --chart-2: hsl(159.7826, 100%, 36.0784%);
+  --chart-3: hsl(42.0290, 92.8251%, 56.2745%);
+  --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
+  --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
+  --sidebar: hsl(228, 9.8039%, 10%);
+  --sidebar-foreground: hsl(0, 0%, 85.0980%);
+  --sidebar-primary: hsl(202.8169, 89.1213%, 53.1373%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(205.7143, 70%, 7.8431%);
+  --sidebar-accent-foreground: hsl(203.7736, 87.6033%, 52.5490%);
+  --sidebar-border: hsl(205.7143, 15.7895%, 26.0784%);
+  --sidebar-ring: hsl(202.8169, 89.1213%, 53.1373%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-surface-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: 16px; /* Increased base font size */
+    line-height: 1.6;
+  }
+
+  /* Increase font sizes across the application */
+  h1 { font-size: 2.25rem; line-height: 1.2; } /* was 2rem */
+  h2 { font-size: 1.875rem; line-height: 1.3; } /* was 1.5rem */
+  h3 { font-size: 1.5rem; line-height: 1.4; } /* was 1.25rem */
+  h4 { font-size: 1.25rem; line-height: 1.4; } /* was 1.125rem */
+  
+  .text-xs { font-size: 0.875rem; } /* was 0.75rem */
+  .text-sm { font-size: 1rem; } /* was 0.875rem */
+  .text-base { font-size: 1.125rem; } /* was 1rem */
+  .text-lg { font-size: 1.25rem; } /* was 1.125rem */
+  .text-xl { font-size: 1.375rem; } /* was 1.25rem */
+  .text-2xl { font-size: 1.75rem; } /* was 1.5rem */
+  .text-3xl { font-size: 2rem; } /* was 1.875rem */
+  .text-4xl { font-size: 2.5rem; } /* was 2.25rem */
+}
+
+@layer components {
+  /* UST Corporate Status Colors */
+  .status-online {
+    background-color: hsl(var(--ust-success-500));
+  }
+  
+  .status-offline {
+    background-color: hsl(var(--ust-neutral-400));
+  }
+  
+  .status-busy {
+    background-color: hsl(var(--ust-warning-500));
+  }
+  
+  .text-status-online {
+    color: hsl(var(--ust-success-600));
+  }
+  
+  .text-status-offline {
+    color: hsl(var(--ust-neutral-500));
+  }
+  
+  .text-status-busy {
+    color: hsl(var(--ust-warning-600));
+  }
+
+  /* UST Corporate Branding */
+  .ust-gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--ust-primary-600)), hsl(var(--ust-secondary-500)));
+  }
+  
+  .ust-gradient-header {
+    background: linear-gradient(90deg, hsl(var(--ust-primary-700)), hsl(var(--ust-primary-600)));
+  }
+  
+  .ust-btn-primary {
+    background-color: hsl(var(--ust-primary-600));
+    color: white;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .ust-btn-primary:hover {
+    background-color: hsl(var(--ust-primary-700));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .ust-btn-secondary {
+    background-color: hsl(var(--ust-secondary-600));
+    color: white;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .ust-btn-secondary:hover {
+    background-color: hsl(var(--ust-secondary-700));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .ust-card {
+    background: white;
+    border: 1px solid hsl(var(--ust-neutral-200));
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+  }
+  
+  .ust-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px) translateZ(0);
+  }
+
+  /* Browser optimization classes */
+  .chrome-optimized {
+    -webkit-font-smoothing: antialiased;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  .safari-optimized {
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Smooth scrolling for all containers */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Optimized animations */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+    -webkit-animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @-webkit-keyframes fadeIn {
+    from { opacity: 0; -webkit-transform: translateY(10px); }
+    to { opacity: 1; -webkit-transform: translateY(0); }
+  }
+  
+  .ust-text-primary {
+    color: hsl(var(--ust-primary-600));
+  }
+  
+  .ust-text-secondary {
+    color: hsl(var(--ust-secondary-600));
+  }
+  
+  .ust-bg-primary {
+    background-color: hsl(var(--ust-primary-600));
+  }
+  
+  .ust-bg-secondary {
+    background-color: hsl(var(--ust-secondary-600));
+  }
+  
+  .ust-border-primary {
+    border-color: hsl(var(--ust-primary-600));
+  }
+  
+  .ust-border-secondary {
+    border-color: hsl(var(--ust-secondary-600));
+  }
+}
