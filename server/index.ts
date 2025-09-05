@@ -1,4 +1,4 @@
-// server/index.ts
+// server/index.ts - (Ensure it looks like this)
 
 import express, { type Request, Response, NextFunction } from "express";
 import http from "http";
@@ -11,7 +11,6 @@ const server = http.createServer(app);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// A simple logger to replace the one from the vite file
 const log = (message: string) => {
   console.log(`[server] ${message}`);
 };
@@ -37,20 +36,14 @@ app.use((req, res, next) => {
     console.error(err);
   });
 
-  // --- CRITICAL CHANGE ---
-  // Only import and set up Vite in development mode.
-  // In production, serve the pre-built static files.
   if (process.env.NODE_ENV === "development") {
+    // This block will now be removed by esbuild during the build
     const { setupVite } = await import("./vite.js");
     await setupVite(app, server);
   } else {
-    // Construct path to the built client assets
+    // This is the only part that will remain in the production server code
     const publicPath = path.resolve(process.cwd(), "./dist/public");
-    
     app.use(express.static(publicPath));
-    
-    // For any request that doesn't match an API route or a static file,
-    // send back the main index.html file.
     app.get("*", (req, res) => {
       res.sendFile(path.join(publicPath, "index.html"));
     });
