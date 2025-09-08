@@ -44,18 +44,18 @@ app.use((req, res, next) => {
     // --- START: REPLACEMENT FOR PRODUCTION LOGIC ---
 
     const publicPath = path.resolve(process.cwd(), "./dist/public");
+    const spaRouter = express.Router();
 
-    // 1. Explicitly serve the 'assets' directory.
-    // When a request for '/assets/...' comes in, look inside the '/dist/public/assets' folder.
-    app.use('/assets', express.static(path.join(publicPath, 'assets')));
-
-    // 2. Serve any other static files (like favicon.ico) from the public root.
-    app.use(express.static(publicPath));
+    // The spaRouter will handle serving all static files (JS, CSS, images)
+    spaRouter.use(express.static(publicPath));
     
-    // 3. The catch-all for the SPA. This will only be hit for page routes (e.g., '/dashboard').
-    app.get("*", (req, res) => {
+    // The spaRouter's catch-all will serve the index.html for any sub-route
+    spaRouter.get("/*", (req, res) => {
       res.sendFile(path.join(publicPath, "index.html"));
     });
+
+    // Mount the entire single-page application router on its specific sub-path
+    app.use('/gen_ai_poc/final_llm_api', spaRouter);
 
     // --- END: REPLACEMENT FOR PRODUCTION LOGIC ---
   }
