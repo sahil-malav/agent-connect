@@ -41,12 +41,23 @@ app.use((req, res, next) => {
     const { setupVite } = await import("./vite.js");
     await setupVite(app, server);
   } else {
-    // This is the only part that will remain in the production server code
+    // --- START: REPLACEMENT FOR PRODUCTION LOGIC ---
+
     const publicPath = path.resolve(process.cwd(), "./dist/public");
+
+    // 1. Explicitly serve the 'assets' directory.
+    // When a request for '/assets/...' comes in, look inside the '/dist/public/assets' folder.
+    app.use('/assets', express.static(path.join(publicPath, 'assets')));
+
+    // 2. Serve any other static files (like favicon.ico) from the public root.
     app.use(express.static(publicPath));
+    
+    // 3. The catch-all for the SPA. This will only be hit for page routes (e.g., '/dashboard').
     app.get("*", (req, res) => {
       res.sendFile(path.join(publicPath, "index.html"));
     });
+
+    // --- END: REPLACEMENT FOR PRODUCTION LOGIC ---
   }
 
   const port = parseInt(process.env.PORT || "5000", 10);
