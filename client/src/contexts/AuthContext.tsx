@@ -37,6 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const API_BASE = import.meta.env.VITE_API_BASE_PATH;
 
   useEffect(() => {
     const savedToken = localStorage.getItem('auth_token');
@@ -50,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const fetchUserProfile = async (authToken: string) => {
     try {
-      const response = await fetch('/api/auth/profile', {
+      const response = await fetch(`${API_BASE}/auth/profile`, {
         headers: {
           'Authorization': `Bearer ${authToken}`,
         },
@@ -75,7 +76,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (username: string, password: string): Promise<{ success: boolean; error?: string }> => {
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${API_BASE}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +101,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const register = async (userData: RegisterData): Promise<{ success: boolean; error?: string }> => {
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(`${API_BASE}/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -126,7 +127,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async () => {
     try {
       if (token) {
-        await fetch('/api/auth/logout', {
+        await fetch(`${API_BASE}/auth/logout`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

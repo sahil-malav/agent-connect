@@ -43,19 +43,23 @@ app.use((req, res, next) => {
   } else {
     // --- START: REPLACEMENT FOR PRODUCTION LOGIC ---
 
+    const mainRouter = express.Router();
     const publicPath = path.resolve(process.cwd(), "./dist/public");
-    const spaRouter = express.Router();
 
-    // The spaRouter will handle serving all static files (JS, CSS, images)
-    spaRouter.use(express.static(publicPath));
+    // 1. Mount the API routes first on the main router.
+    // registerRoutes(app) likely adds an `/api` route.
+    await registerRoutes(mainRouter);
+
+    // 2. Mount the static file server next.
+    mainRouter.use(express.static(publicPath));
     
-    // The spaRouter's catch-all will serve the index.html for any sub-route
-    spaRouter.get("/*", (req, res) => {
+    // 3. Mount the SPA's catch-all route last.
+    mainRouter.get("/*", (req, res) => {
       res.sendFile(path.join(publicPath, "index.html"));
     });
 
-    // Mount the entire single-page application router on its specific sub-path
-    app.use('/gen_ai_poc/final_llm_api', spaRouter);
+    // 4. Mount the entire application on its specific sub-path.
+    app.use('/gen_ai_poc/final_llm_api', mainRouter);
 
     // --- END: REPLACEMENT FOR PRODUCTION LOGIC ---
   }
