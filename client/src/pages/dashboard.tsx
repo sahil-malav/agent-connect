@@ -14,6 +14,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Download, Plus, Activity, Users, Server, TrendingUp, Store, Shield } from "lucide-react";
 import { useState } from "react";
 import type { Agent, SystemMetric, ActivityLog } from "@shared/schema";
+import { apiClient } from "@/lib/apiClient";
+
 
 export default function Dashboard() {
   const { user, isAdmin } = useAuth();
@@ -24,7 +26,8 @@ export default function Dashboard() {
   const [detailsAgent, setDetailsAgent] = useState<Agent | null>(null);
 
   const { data: agents = [], isLoading: agentsLoading } = useQuery<Agent[]>({
-    queryKey: ["/api/agents"],
+    queryKey: ["/agents"], // Note: Removed '/api' as our client will add it
+    queryFn: apiClient,
   });
 
   const { data: stats } = useQuery<{
@@ -33,15 +36,18 @@ export default function Dashboard() {
     offlineAgents: number;
     agentTypes: Record<string, number>;
   }>({
-    queryKey: ["/api/stats"],
+    queryKey: ["/stats"], // Removed '/api'
+    queryFn: apiClient,
   });
 
   const { data: activityLogs = [] } = useQuery<ActivityLog[]>({
-    queryKey: ["/api/activity-logs"],
+    queryKey: ["/activity-logs"], // Removed '/api'
+    queryFn: apiClient,
   });
 
   const { data: systemMetrics = [] } = useQuery<SystemMetric[]>({
-    queryKey: ["/api/system-metrics"],
+    queryKey: ["/system-metrics"], // Removed '/api'
+    queryFn: apiClient,
   });
 
   const handleOpenDemo = (agent: Agent) => {
