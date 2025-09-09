@@ -37,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const API_BASE = import.meta.env.VITE_API_BASE_PATH;
+  const API_BASE = '/gen_ai_poc/final_llm_api/api';
 
   useEffect(() => {
     const savedToken = localStorage.getItem('auth_token');
